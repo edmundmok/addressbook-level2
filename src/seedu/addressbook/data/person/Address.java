@@ -8,9 +8,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "123, Clementi Ave 3, #12-34, 231534";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must follow this format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
 
     private Block block;
     private Street street;
@@ -25,10 +24,10 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
-        if (!isValidAddress(address)) {
+        String[] addressArray = splitAddressIntoArray(address);
+        if (!isValidAddress(addressArray)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        String[] addressArray = splitAddressIntoArray(address);
         initializeAddressFromArray(addressArray);
     }
 
@@ -63,10 +62,10 @@ public class Address {
 	}
 
 	/**
-     * Returns true if a given string is a valid person email.
+     * Returns true if the address contains a BLOCK, STREET, UNIT and POSTAL_CODE.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValidAddress(String[] addressArray) {
+        return addressArray.length == 4;
     }
 
     @Override
