@@ -3,6 +3,7 @@ package seedu.addressbook.storage;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
+import seedu.addressbook.ui.TextUi;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -88,6 +89,8 @@ public class StorageFile {
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
+    	warnIfStorageMissing();
+    	
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
@@ -102,6 +105,17 @@ public class StorageFile {
             throw new StorageOperationException("Error converting address book into storage format");
         }
     }
+
+	/**
+	 * Warns the user if storage file is missing and informs the user that a new file is being created.
+	 */
+	private void warnIfStorageMissing() {
+		TextUi ui = new TextUi();
+		
+		if (!path.toFile().exists()){
+    		ui.showToUser("*Storage file not found... Creating a new storage file...*");
+    	}
+	}
 
     /**
      * Loads data from this storage file.
