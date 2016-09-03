@@ -42,4 +42,14 @@ public class NameTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void isSimilar_sameNameCaps_returnTrue(){
+		try {
+			assertTrue("A name must be similar to itself and is case-insensitive", name.isSimilar(new Name("JOHN SMITH")));
+		} catch (IllegalValueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
