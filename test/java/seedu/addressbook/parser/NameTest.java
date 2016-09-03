@@ -26,6 +26,11 @@ public class NameTest {
 	 */
 	@Test
 	public void isSimilar_nullOther_returnFalse(){
-		assertFalse(name.isSimilar(null));
+		assertFalse("No name is similar to a null Name", name.isSimilar(null));
+	}
+	
+	@Test
+	public void isSimilar_sameNameObject_returnTrue(){
+		assertTrue("A name must be similar to itself", name.isSimilar(name));
 	}
 }
