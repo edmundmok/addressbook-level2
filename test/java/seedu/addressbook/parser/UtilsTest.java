@@ -57,6 +57,11 @@ public class UtilsTest {
 	/*
 	 * Tests for elementsAreUnique() method for Utils class
 	 */
+	@Test(expected = NullPointerException.class)
+	public void utilsElementsAreUnique_null_throwsNullPointerException(){
+		Utils.elementsAreUnique(null);
+	}
+	
 	@Test
 	public void utilsElementsAreUnique_empty_returnsTrue(){
 		assertTrue("An empty collection has all unique elements", Utils.elementsAreUnique(new ArrayList<Object>()));
