@@ -61,9 +61,13 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     * Returns true that two names are similar if one Name is a substring of another Name, case-insensitive.
+     */
 	public boolean isSimilar(Name other) {
 		if (other == null) return false;
-		return this.toString().toLowerCase().equals(other.toString().toLowerCase());
+		return this.toString().toLowerCase().contains(other.toString().toLowerCase()) 
+				|| other.toString().toLowerCase().contains(this.toString().toLowerCase());
 	}
 	
 

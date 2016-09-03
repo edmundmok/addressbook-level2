@@ -52,4 +52,22 @@ public class NameTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void isSimilar_otherSubsetOfThis_returnTrue(){
+		try {
+			assertTrue("A name is similar to a subset of itself", name.isSimilar(new Name("John")));
+		} catch (IllegalValueException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void isSimilar_thisSubsetOfOther_returnTrue(){
+		try {
+			assertTrue("A name is similar to a subset of itself", name.isSimilar(new Name("John Smith Harry")));
+		} catch (IllegalValueException e) {
+			e.printStackTrace();
+		}
+	}
 }
