@@ -5,7 +5,7 @@ import seedu.addressbook.data.tag.Tag;
 
 public class Tagging {
 	
-	enum TaggingType {
+	public enum TaggingType {
 		ADD_TAG, REMOVE_TAG;
 	}
 	
